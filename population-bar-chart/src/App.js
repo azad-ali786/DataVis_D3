@@ -29,18 +29,17 @@ function App() {
     <svg width={width} height={height}>
       <g transform={`translate(${margin.left},${margin.top})`}>
         {xScale.ticks().map((tickValue) => (
-          <g transform={`translate(${xScale(tickValue)},0)`}>
+          <g key={tickValue} transform={`translate(${xScale(tickValue)},0)`}>
             <line y2={innerHeight} stroke="black" />
             <text dy="1em" y={innerHeight+3} style={{textAnchor: 'middle'}}>{tickValue}</text>
           </g>
         ))}
         {yScale.domain().map((tickValue) => (
-          <g transform={`translate(0,${yScale(tickValue)})`}>
-            <text  style={{textAnchor: 'middle'}}>{tickValue}</text>
-          </g>
+            <text key={tickValue} dy="0.75em" x="-3" y={yScale(tickValue)+yScale.bandwidth()/2}  style={{textAnchor: 'end'}}>{tickValue}</text>
         ))}
         {data.map((d) => (
           <rect
+          key={d.Country}
             x={0}
             y={yScale(d.Country)}
             width={xScale(d.Population)}

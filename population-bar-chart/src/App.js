@@ -1,5 +1,7 @@
 import React from "react";
 import { useData } from "./useData";
+import AxisBottom from "./AxisBottom";
+import AxisLeft from "./AxisLeft";
 import { scaleBand, scaleLinear, max } from "d3";
 function App() {
   let height, width;
@@ -21,6 +23,7 @@ function App() {
   const yScale = scaleBand()
     .domain(data.map((d) => d.Country))
     .range([0, innerHeight]);
+
   const xScale = scaleLinear()
     .domain([0, max(data, (d) => d.Population)])
     .range([0, innerWidth]);
@@ -28,18 +31,16 @@ function App() {
   return (
     <svg width={width} height={height}>
       <g transform={`translate(${margin.left},${margin.top})`}>
-        {xScale.ticks().map((tickValue) => (
-          <g key={tickValue} transform={`translate(${xScale(tickValue)},0)`}>
-            <line y2={innerHeight} stroke="black" />
-            <text dy="1em" y={innerHeight+3} style={{textAnchor: 'middle'}}>{tickValue}</text>
-          </g>
-        ))}
-        {yScale.domain().map((tickValue) => (
-            <text key={tickValue} dy="0.75em" x="-3" y={yScale(tickValue)+yScale.bandwidth()/2}  style={{textAnchor: 'end'}}>{tickValue}</text>
-        ))}
+        <AxisBottom
+          innerWidth={innerWidth}
+          innerHeight={innerHeight}
+          data={data}
+          xScale={xScale}
+        />
+        <AxisLeft yScale={yScale}/>
         {data.map((d) => (
           <rect
-          key={d.Country}
+            key={d.Country}
             x={0}
             y={yScale(d.Country)}
             width={xScale(d.Population)}

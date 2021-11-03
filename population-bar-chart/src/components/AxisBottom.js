@@ -1,4 +1,4 @@
-const AxisBottom = ({ innerHeight, innerWidth,data,xScale }) => {
+const AxisBottom = ({ innerHeight,xScale }) => {
   return xScale.ticks().map((tickValue) => (
     <g key={tickValue} transform={`translate(${xScale(tickValue)},0)`}>
       <line y2={innerHeight} stroke="black" />

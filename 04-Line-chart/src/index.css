@@ -13,10 +13,16 @@ pre {
 .tick text {
   fill: #635f5d;
 }
-.mark {
+.mark circle {
   fill: #137b8028;
   stroke: #135f63;
   stroke-width: 1px;
+}
+.marks path {
+  stroke: #131a80;
+  stroke-width: 3;
+  stroke-linejoin: round;
+  stroke-linecap: round;
 }
 .axis-label {
   font-size: 1.5em;

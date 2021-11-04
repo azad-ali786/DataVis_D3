@@ -6,7 +6,7 @@ const Marks = ({ data, xScale, yScale, xValue, yValue, tooltipFormat }) => {
       cy={yScale(yValue(d))}
       r={10}
     >
-      <title>{tooltipFormat(xValue(d))}</title>
+      <title>{xValue(d)}</title>
     </circle>
   ));
 };

@@ -1,4 +1,4 @@
-const AxisLeft = ({ yScale,innerWidth }) => {
+const AxisLeft = ({ yScale,innerWidth,tickOffset = 3 }) => {
   return yScale.ticks().map((tickValue) => (
     <g
       className="tick"
@@ -9,7 +9,7 @@ const AxisLeft = ({ yScale,innerWidth }) => {
       <text
         key={tickValue}
         dy="0.75em"
-        x="-3"
+        x={-tickOffset}
         y={yScale(tickValue)}
         style={{ textAnchor: "end" }}
       >

@@ -3,7 +3,7 @@ import { useData } from "./helpers/useData";
 import AxisBottom from "./components/AxisBottom";
 import AxisLeft from "./components/AxisLeft";
 import Marks from "./components/Marks";
-import { scaleLinear, extent,format } from "d3";
+import { scaleLinear, max } from "d3";
 function App() {
   let height, width;
   if (typeof window != "undefined") {
@@ -12,34 +12,30 @@ function App() {
     width = window.innerWidth;
   }
 
-  const margin = { top: 20, right: 30, bottom: 65, left: 220 };
+  const margin = { top: 20, right: 30, bottom: 65, left: 80 };
   const innerHeight = height - margin.top - margin.bottom;
   const innerWidth = width - margin.left - margin.right;
   const xAxisLabelOffset = 50;
-  
-  const xValue = d => d.petal_length;
-  const xAxisLabel = 'Petal Length';
+  const yAxisLabelOffset = 45;
 
-  const yValue = d => d.sepal_width;
-  const yAxisLabel = 'Sepal Width';
-  
+  const xValue = (d) => d.petal_length;
+  const xAxisLabel = "Petal Length";
 
-//Formatting population
-  const siFormat = format('.2s');
-  const xAxisTickFormat = tickValue => siFormat(tickValue).replace('G', 'B');
+  const yValue = (d) => d.sepal_width;
+  const yAxisLabel = "Sepal Width";
 
   const data = useData();
 
   if (!data && typeof window != "undefined")
     return <h1>Shake your ass till data loads...</h1>;
 
-
   const xScale = scaleLinear()
-    .domain(extent(data, xValue))
-    .range([0, innerWidth]);
+    .domain([0.5, max(data, xValue)])
+    .range([0, innerWidth])
+    .nice();
 
   const yScale = scaleLinear()
-    .domain(extent(data, yValue))
+    .domain([1.5, max(data, yValue)])
     .range([0, innerHeight]);
 
   return (
@@ -50,16 +46,25 @@ function App() {
           innerHeight={innerHeight}
           data={data}
           xScale={xScale}
-          tickFormat={xAxisTickFormat}
+          tickOffset={5}
         />
-        <AxisLeft  yScale={yScale} innerWidth={innerWidth}/>
+        <text
+          className="axis-label"
+          textAnchor="middle"
+          transform={`translate(${-yAxisLabelOffset},${
+            innerHeight / 2
+          }) rotate(-90)`}
+        >
+          {yAxisLabel}
+        </text>
+        <AxisLeft yScale={yScale} innerWidth={innerWidth} tickOffset={5} />
         <text
           className="axis-label"
           x={innerWidth / 2}
           y={innerHeight + xAxisLabelOffset}
           textAnchor="middle"
         >
-          Population
+          {xAxisLabel}
         </text>
         <Marks
           data={data}
@@ -67,7 +72,6 @@ function App() {
           yScale={yScale}
           xValue={xValue}
           yValue={yValue}
-          tooltipFormat={xAxisTickFormat}
         />
       </g>
     </svg>

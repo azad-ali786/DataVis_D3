@@ -36,7 +36,7 @@ function App() {
 
   const yScale = scaleLinear()
     .domain([1.5, max(data, yValue)])
-    .range([0, innerHeight]);
+    .range([innerHeight,0]);
 
   return (
     <svg width={width} height={height}>

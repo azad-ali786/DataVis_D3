@@ -1,5 +1,16 @@
+import { line, curveNatural } from 'd3';
 const Marks = ({ data, xScale, yScale, xValue, yValue, tooltipFormat }) => {
-  return data.map((d) => (
+  return(
+    <>
+    <path
+      fill="none"
+      stroke="black"
+      d={line()
+        .x(d => xScale(xValue(d)))
+        .y(d => yScale(yValue(d)))
+        .curve(curveNatural)(data)}
+    />
+   { data.map((d) => (
     <circle
       className="mark"
       cx={xScale(xValue(d))}
@@ -8,7 +19,9 @@ const Marks = ({ data, xScale, yScale, xValue, yValue, tooltipFormat }) => {
     >
       <title>{xValue(d)}</title>
     </circle>
-  ));
-};
+  ))}
+  
+  </>
+  )};
 
 export default Marks;

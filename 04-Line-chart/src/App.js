@@ -3,7 +3,7 @@ import { useData } from "./helpers/useData";
 import AxisBottom from "./components/AxisBottom";
 import AxisLeft from "./components/AxisLeft";
 import Marks from "./components/Marks";
-import { scaleLinear, max } from "d3";
+import { scaleLinear,scaleTime,extent,timeFormat} from "d3";
 function App() {
   let height, width;
   if (typeof window != "undefined") {
@@ -24,19 +24,24 @@ function App() {
   const yValue = d => d.temperature;
   const yAxisLabel = 'Temperature';
 
+  const xAxisTickFormat = timeFormat('%d %b');
+
   const data = useData();
+ 
+  if (!data) {
+    return <pre>Shake your ass till it loads...</pre>;
+  }
 
-  if (!data && typeof window != "undefined")
-    return <h1>Shake your ass till data loads...</h1>;
-
-  const xScale = scaleLinear()
-    .domain([0.5, max(data, xValue)])
+  const xScale = scaleTime()
+    .domain(extent(data, xValue))
     .range([0, innerWidth])
     .nice();
 
   const yScale = scaleLinear()
-    .domain([1.5, max(data, yValue)])
-    .range([0, innerHeight]);
+    .domain(extent(data, yValue))
+    .range([innerHeight, 0])
+    .nice();
+
 
   return (
     <svg width={width} height={height}>
@@ -46,7 +51,8 @@ function App() {
           innerHeight={innerHeight}
           data={data}
           xScale={xScale}
-          tickOffset={5}
+          tickOffset={7}
+          tickFormat={xAxisTickFormat}
         />
         <text
           className="axis-label"
@@ -57,7 +63,7 @@ function App() {
         >
           {yAxisLabel}
         </text>
-        <AxisLeft yScale={yScale} innerWidth={innerWidth} tickOffset={5} />
+        <AxisLeft yScale={yScale} innerWidth={innerWidth} tickOffset={7} />
         <text
           className="axis-label"
           x={innerWidth / 2}

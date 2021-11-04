@@ -1,4 +1,4 @@
-const AxisBottom = ({ innerHeight, xScale,tickOffset=3 }) => {
+const AxisBottom = ({ innerHeight, xScale,tickFormat,tickOffset=3 }) => {
   return xScale.ticks().map((tickValue) => (
     <g
       className="tick"
@@ -7,7 +7,7 @@ const AxisBottom = ({ innerHeight, xScale,tickOffset=3 }) => {
     >
       <line y2={innerHeight} />
       <text dy="1em" y={innerHeight + tickOffset} style={{ textAnchor: "middle" }}>
-        {tickValue}
+      {tickFormat(tickValue)}
       </text>
     </g>
   ));

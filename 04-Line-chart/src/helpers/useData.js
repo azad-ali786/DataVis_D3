@@ -10,7 +10,7 @@ export const useData = () => {
   useEffect(() => {
     const row = d => {
       d.temperature = +d.temperature;
-      d.timestamp = new Date(d.timestamp);
+      d.timestamp = +new Date(d.timestamp);
       return d;
     };
     csv(csvUrl, row).then(setData);

@@ -14,7 +14,9 @@ pre {
   fill: #635f5d;
 }
 .mark {
-  fill: #137b80;
+  fill: #137b8028;
+  stroke: #135f63;
+  stroke-width: 1px;
 }
 .axis-label {
   font-size: 1.5em;

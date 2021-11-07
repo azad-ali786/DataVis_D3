@@ -11,12 +11,11 @@ pre {
   background-color: #000000;
 }
 .marks .land {
-  fill: #c7afb4b9;
+  fill: #9575c9e0;
   height: 100%;
   width: 100%;
 }
-
 .marks .interiors {
   fill: none;
-  stroke: rgb(221, 219, 219);
+  stroke: rgb(0, 0, 0);
 }

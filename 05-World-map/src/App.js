@@ -18,8 +18,8 @@ function App() {
 
 
   return (
-    <svg width={width} height={height}>
-      <Marks data={data} />
+    <svg className="sg" width={width} height={height}>
+      <Marks innerWidth={width} innerHeight={height} data={data} />
     </svg>
   );
 }

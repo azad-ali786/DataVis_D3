@@ -1,29 +1,17 @@
-import { line, curveNatural } from "d3";
-const Marks = ({ data, xScale, yScale, xValue, yValue, tooltipFormat }) => {
-  return (
-    <g className="marks">
-      <path
-        fill="none"
-        stroke="black"
-        d={line()
-          .x((d) => xScale(xValue(d)))
-          .y((d) => yScale(yValue(d)))
-          .curve(curveNatural)(data)}
-      />
-      {/*
-   If you want line chart with dots,remove the comments 
-   { data.map((d) => (
-    <circle
-      className="mark"
-      cx={xScale(xValue(d))}
-      cy={yScale(yValue(d))}
-      r={10}
-    >
-      <title>{xValue(d)}</title>
-    </circle>
-  ))} */}
-    </g>
-  );
-};
+import { geoNaturalEarth1, geoPath, geoGraticule } from 'd3';
 
+const projection = geoNaturalEarth1();
+const path = geoPath(projection);
+const graticule = geoGraticule();
+
+const Marks = ({ data: { land, interiors } }) => (
+  <g className="marks">
+    <path className="sphere" d={path({ type: 'Sphere' })} />
+    <path className="graticules" d={path(graticule())} />
+    {land.features.map(feature => (
+      <path className="land" d={path(feature)} />
+    ))}
+    <path className="interiors" d={path(interiors)} />
+  </g>
+);
 export default Marks;

@@ -19,9 +19,7 @@ function App() {
 
   return (
     <svg width={width} height={height}>
-        <Marks
-          data={data}
-        />
+      <Marks data={data} />
     </svg>
   );
 }

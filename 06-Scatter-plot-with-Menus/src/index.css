@@ -18,10 +18,24 @@ pre {
   stroke: #135f63;
   stroke-width: 1px;
 }
-.axis-label {
+.axis-selection-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.axis-selection,.axis-label {
   font-size: 1.5em;
   fill: #635f5d;
 }
+.axis-selection{
+  margin-left: 5%;
+}
 .tick text,.tick line,.mark{
   transition: all 1s ease-out;
+}
+.Dropdown-root {
+  font-size: 1em;
+  width: 30%;
+  margin-left: 1%;
 }

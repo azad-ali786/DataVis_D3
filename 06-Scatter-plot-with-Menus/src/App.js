@@ -3,7 +3,8 @@ import { useData } from "./helpers/useData";
 import AxisBottom from "./components/AxisBottom";
 import AxisLeft from "./components/AxisLeft";
 import Marks from "./components/Marks";
-import Dropdown from "./Dropdown";
+import ReactDropdown from "react-dropdown";
+import "react-dropdown/style.css";
 import { scaleLinear, extent } from "d3";
 function App() {
   let height, width;
@@ -13,7 +14,7 @@ function App() {
     width = window.innerWidth;
   }
 
-  const margin = { top: 20, right: 30, bottom: 100, left: 80 };
+  const margin = { top: 20, right: 30, bottom: 150, left: 80 };
   const innerHeight = height - margin.top - margin.bottom;
   const innerWidth = width - margin.left - margin.right;
   const xAxisLabelOffset = 50;
@@ -64,20 +65,20 @@ function App() {
 
   return (
     <>
-      <label for="x-select">X:</label>
-      <Dropdown
-        id="x-select"
+     <div className="axis-selection-container">
+      <h1 className="axis-selection">X:</h1>
+      <ReactDropdown
         options={attributes}
         selectedValue={xAttribute}
-        onSelectedValueChange={setXAttribute}
+        onChange={({ value }) => setXAttribute(value)}
       />
-      <label for="y-select">Y:</label>
-      <Dropdown
+      <h1 className="axis-selection">Y:</h1>
+      <ReactDropdown
         options={attributes}
-        id="y-select"
         selectedValue={yAttribute}
-        onSelectedValueChange={setYAttribute}
+        onChange={({ value }) => setYAttribute(value)}
       />
+      </div>
       <svg width={width} height={height}>
         <g transform={`translate(${margin.left},${margin.top})`}>
           <AxisBottom

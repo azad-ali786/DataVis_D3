@@ -5,7 +5,7 @@ import AxisLeft from "./components/AxisLeft";
 import Marks from "./components/Marks";
 import ReactDropdown from "react-dropdown";
 import "react-dropdown/style.css";
-import { scaleLinear, extent } from "d3";
+import { scaleLinear, extent, scaleOrdinal } from "d3";
 function App() {
   let height, width;
   if (typeof window != "undefined") {
@@ -46,7 +46,10 @@ function App() {
   const [yAttribute, setYAttribute] = useState("sepal_width");
   const yValue = (d) => d[yAttribute];
   const yAxisLabel = getLabel(yAttribute);
-
+   
+  //variable for colorScale property
+  const colorValue = (d) => d.species;
+  
   //Data fetching
   const data = useData();
 
@@ -63,21 +66,26 @@ function App() {
     .range([innerHeight, 0])
     .nice();
 
+  const colorScale = scaleOrdinal()
+  .domain(data.map(colorValue))
+  .range(['#E6842A', '#137B80', '#8E6C8A']);
   return (
     <>
-     <div className="axis-selection-container">
-      <h1 className="axis-selection">X:</h1>
-      <ReactDropdown
-        options={attributes}
-        selectedValue={xAttribute}
-        onChange={({ value }) => setXAttribute(value)}
-      />
-      <h1 className="axis-selection">Y:</h1>
-      <ReactDropdown
-        options={attributes}
-        selectedValue={yAttribute}
-        onChange={({ value }) => setYAttribute(value)}
-      />
+      <div className="axis-selection-container">
+        <h1 className="axis-selection">X:</h1>
+        <ReactDropdown
+          options={attributes}
+          selectedValue={xAttribute}
+          onChange={({ value }) => setXAttribute(value)}
+          placeholder={xAxisLabel}
+        />
+        <h1 className="axis-selection">Y:</h1>
+        <ReactDropdown
+          options={attributes}
+          selectedValue={yAttribute}
+          onChange={({ value }) => setYAttribute(value)}
+          placeholder={yAxisLabel}
+        />
       </div>
       <svg width={width} height={height}>
         <g transform={`translate(${margin.left},${margin.top})`}>
@@ -112,6 +120,8 @@ function App() {
             yScale={yScale}
             xValue={xValue}
             yValue={yValue}
+            colorScale={colorScale}
+            colorValue={colorValue}
           />
         </g>
       </svg>

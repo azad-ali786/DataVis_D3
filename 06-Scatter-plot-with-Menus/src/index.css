@@ -14,9 +14,7 @@ pre {
   fill: #635f5d;
 }
 .mark {
-  fill: #137b8028;
-  stroke: #135f63;
-  stroke-width: 1px;
+  stroke-width: 2px;
 }
 .axis-selection-container{
   display: flex;

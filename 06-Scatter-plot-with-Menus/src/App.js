@@ -3,6 +3,7 @@ import { useData } from "./helpers/useData";
 import AxisBottom from "./components/AxisBottom";
 import AxisLeft from "./components/AxisLeft";
 import Marks from "./components/Marks";
+import ColorLegend from "./components/ColorLegend";
 import ReactDropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import { scaleLinear, extent, scaleOrdinal } from "d3";
@@ -14,7 +15,7 @@ function App() {
     width = window.innerWidth;
   }
 
-  const margin = { top: 20, right: 30, bottom: 150, left: 80 };
+  const margin = { top: 20, right: 150, bottom: 150, left: 80 };
   const innerHeight = height - margin.top - margin.bottom;
   const innerWidth = width - margin.left - margin.right;
   const xAxisLabelOffset = 50;
@@ -46,10 +47,10 @@ function App() {
   const [yAttribute, setYAttribute] = useState("sepal_width");
   const yValue = (d) => d[yAttribute];
   const yAxisLabel = getLabel(yAttribute);
-   
+
   //variable for colorScale property
   const colorValue = (d) => d.species;
-  
+
   //Data fetching
   const data = useData();
 
@@ -67,8 +68,8 @@ function App() {
     .nice();
 
   const colorScale = scaleOrdinal()
-  .domain(data.map(colorValue))
-  .range(['#E6842A', '#137B80', '#8E6C8A']);
+    .domain(data.map(colorValue))
+    .range(["#E6842A", "#137B80", "#8E6C8A"]);
   return (
     <>
       <div className="axis-selection-container">
@@ -114,6 +115,9 @@ function App() {
           >
             {xAxisLabel}
           </text>
+          <g transform={`translate(${innerWidth+15}, 10)`}>
+          <ColorLegend colorScale={colorScale} />
+          </g>
           <Marks
             data={data}
             xScale={xScale}

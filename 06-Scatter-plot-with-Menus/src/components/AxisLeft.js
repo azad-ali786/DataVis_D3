@@ -1,4 +1,4 @@
-const AxisLeft = ({ yScale,innerWidth,tickOffset = 3 }) => {
+const AxisLeft = ({ yScale, innerWidth, tickOffset = 3 }) => {
   return yScale.ticks().map((tickValue) => (
     <g
       className="tick"

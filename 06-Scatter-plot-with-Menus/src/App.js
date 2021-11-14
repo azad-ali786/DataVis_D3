@@ -50,6 +50,7 @@ function App() {
 
   //variable for colorScale property
   const colorValue = (d) => d.species;
+  const colorLegendLabel = 'Species';
 
   //Data fetching
   const data = useData();
@@ -115,7 +116,15 @@ function App() {
           >
             {xAxisLabel}
           </text>
-          <g transform={`translate(${innerWidth+15}, 10)`}>
+          <g transform={`translate(${innerWidth+20}, 40)`}>
+          <text
+            x={35}
+            y={-25}
+            className="axis-label"
+            textAnchor="middle"
+          >
+            {colorLegendLabel}
+          </text>
           <ColorLegend colorScale={colorScale} />
           </g>
           <Marks

@@ -27,7 +27,7 @@ pre {
   fill: #635f5d;
 }
 .axis-selection{
-  margin-left: 5%;
+  margin-left: 2%;
 }
 .tick text,.tick line,.mark{
   transition: all 1s ease-out;
@@ -35,5 +35,5 @@ pre {
 .Dropdown-root {
   font-size: 1em;
   width: 30%;
-  margin-left: 1%;
+  margin-left: .5%;
 }

@@ -1,10 +1,10 @@
-const Marks = ({ data, xScale, yScale, xValue, yValue, colorScale,colorValue }) => {
+const Marks = ({ data, xScale, yScale, xValue, yValue, colorScale,colorValue, fillValue }) => {
   return data.map((d,id) => (
     <circle
       className="mark"
       stroke={colorScale(colorValue(d))}
       fill={colorScale(colorValue(d))}
-      fillOpacity="0.1"
+      fillOpacity={fillValue}
       cx={xScale(xValue(d))}
       cy={yScale(yValue(d))}
       r={10}

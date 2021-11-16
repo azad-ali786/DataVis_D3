@@ -54,9 +54,13 @@ function App() {
 
   //Data fetching
   const data = useData();
+  //hovered value of color legend
+  const [hoveredValue,setHoveredValue]=useState(null);
 
   if (!data && typeof window != "undefined")
     return <h1>Shake your ass till data loads...</h1>;
+  
+  const filteredData = data.filter(d=> colorValue(d)===hoveredValue)
 
   const xScale = scaleLinear()
     .domain(extent(data, xValue))
@@ -71,6 +75,7 @@ function App() {
   const colorScale = scaleOrdinal()
     .domain(data.map(colorValue))
     .range(["#E6842A", "#137B80", "#8E6C8A"]);
+
   return (
     <>
       <div className="axis-selection-container">
@@ -125,7 +130,7 @@ function App() {
           >
             {colorLegendLabel}
           </text>
-          <ColorLegend colorScale={colorScale} />
+          <ColorLegend colorScale={colorScale} setHoveredValue={setHoveredValue}/>
           </g>
           <Marks
             data={data}
@@ -135,6 +140,17 @@ function App() {
             yValue={yValue}
             colorScale={colorScale}
             colorValue={colorValue}
+            fillValue={0.1}
+          />
+          <Marks
+            data={filteredData}
+            xScale={xScale}
+            yScale={yScale}
+            xValue={xValue}
+            yValue={yValue}
+            colorScale={colorScale}
+            colorValue={colorValue}
+            fillValue={0.3}
           />
         </g>
       </svg>

@@ -7,14 +7,18 @@ body {
 pre {
   font-size: 7em;
 }
+.legendTick{
+  cursor: pointer;
+}
 .tick line {
-  stroke: #c0c0bb;
+  stroke: #c0c0bb; 
 }
 .tick text {
   fill: #635f5d;
 }
 .mark {
   transition: all 1s ease-out;
+  cursor: pointer;
 }
 .axis-selection-container {
   display: flex;

@@ -6,7 +6,7 @@ const ColorLegend = ({
   tickTextOffset = 20,
 }) => 
   colorScale.domain().map((domainValue, i) => (
-    <g onMouseEnter={()=>setHoveredValue(domainValue)} onMouseLeave={()=>setHoveredValue(null)} key={"tick"+i} className="tick" transform={`translate(0,${i* tickSpacing})`}>
+    <g onMouseEnter={()=>setHoveredValue(domainValue)} onMouseLeave={()=>setHoveredValue(null)} key={"tick"+i} className="legendTick" transform={`translate(0,${i* tickSpacing})`}>
       <circle stroke={colorScale(domainValue)}
       fill={colorScale(domainValue)}
       fillOpacity="0.1" r={tickSize} />

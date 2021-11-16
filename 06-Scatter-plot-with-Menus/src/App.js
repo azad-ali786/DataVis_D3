@@ -75,7 +75,7 @@ function App() {
   const colorScale = scaleOrdinal()
     .domain(data.map(colorValue))
     .range(["#E6842A", "#137B80", "#8E6C8A"]);
-
+   
   return (
     <>
       <div className="axis-selection-container">
@@ -140,7 +140,7 @@ function App() {
             yValue={yValue}
             colorScale={colorScale}
             colorValue={colorValue}
-            fillValue={0.1}
+            flipper={!filteredData}
           />
           <Marks
             data={filteredData}
@@ -150,7 +150,7 @@ function App() {
             yValue={yValue}
             colorScale={colorScale}
             colorValue={colorValue}
-            fillValue={0.3}
+            flipper={filteredData}
           />
         </g>
       </svg>

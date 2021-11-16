@@ -14,7 +14,6 @@ pre {
   fill: #635f5d;
 }
 .mark {
-  stroke-width: 2px;
   transition: all 1s ease-out;
 }
 .axis-selection-container {

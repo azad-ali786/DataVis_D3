@@ -16,13 +16,13 @@ function App() {
   //data for point on globe to show population
   const citiesData = useCitiesData();
 
-  if (!atlasData) {
+  if (!atlasData || !citiesData) {
     return <pre>Shake your ass till it loads...</pre>;
   }
 
   return (
     <svg className="sg" width={width} height={height}>
-      <Marks innerWidth={width} innerHeight={height} data={atlasData} />
+      <Marks innerWidth={width} innerHeight={height} atlasData={atlasData} citiesData={citiesData} />
     </svg>
   );
 }

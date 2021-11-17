@@ -8,14 +8,26 @@ pre {
   font-size: 7em;
 }
 .sg{
-  background-color: #000000;
+  background-color: #EBE8E7;
+}
+.marks .sphere {
+  fill: rgb(209, 206, 206);
 }
 .marks .land {
-  fill: #9575c9e0;
+  fill: #ffffff;
   height: 100%;
   width: 100%;
 }
 .marks .interiors {
   fill: none;
-  stroke: rgb(0, 0, 0);
+  stroke:#EBE8E7;
+  stroke-width: 1.75px;
+}
+.marks circle {
+  fill: #7F95D1;
+}
+.marks .graticules {
+  fill: none;
+  stroke: #EBE8E7;
+  stroke-width: 0.5px;
 }

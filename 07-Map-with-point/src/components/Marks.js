@@ -1,6 +1,6 @@
 import { geoPath, geoOrthographic, geoGraticule } from "d3";
 
-const projection = geoOrthographic();
+const projection = geoOrthographic().scale(248).clipAngle(90);
 const path = geoPath(projection);
 const graticule = geoGraticule();
 const Marks = ({
@@ -21,7 +21,7 @@ const Marks = ({
     <path className="interiors" d={path(interiors)} />
     {citiesData.map((d,i) => {
       const [x, y] = projection([d.lng, d.lat]);
-      return <circle key={x+y+i} cx={x} cy={y} r={1.5} />;
+      return <circle key={x+y+i} cx={x} cy={y} r={1.25} />;
     })}
   </g>
 );

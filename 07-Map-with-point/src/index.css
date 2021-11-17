@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;700&display=swap");
+body {
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+}
+pre {
+  font-size: 7em;
+}
+.sg{
+  background-color: #000000;
+}
+.marks .land {
+  fill: #9575c9e0;
+  height: 100%;
+  width: 100%;
+}
+.marks .interiors {
+  fill: none;
+  stroke: rgb(0, 0, 0);
+}

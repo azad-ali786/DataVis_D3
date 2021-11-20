@@ -24,7 +24,8 @@ pre {
   stroke-width: 1.75px;
 }
 .marks circle {
-  fill: #7F95D1;
+  fill: #3f9272;
+  opacity: 0.3;
 }
 .marks .graticules {
   fill: none;

@@ -18,7 +18,7 @@ function App() {
   const citiesData = useCitiesData();
 
   if (!atlasData || !citiesData) {
-    return <pre>Shake your ass till it loads...</pre>;
+    return <pre>Loading...</pre>;
   }
   
   //population scale [radius of circle proportional to population]
